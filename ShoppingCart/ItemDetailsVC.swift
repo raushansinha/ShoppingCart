@@ -18,25 +18,103 @@ class ItemDetailsVC: UIViewController {
     @IBOutlet weak var selectedStore: UILabel!
     
     
+    
     var stores: [Store] = []
+    var itemToEdit: Item?
+    var imagePicker: UIImagePickerController!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let topItem = self.navigationController?.navigationBar.topItem {
             
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         }
         
         itemStore.delegate = self
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
         
         stores = [Store]()
         //loadStoreTempData()
         getStoreData()
+        
+        if itemToEdit != nil {
+            loadItemData()
+        }
     }
     
+    @IBAction func savePressed(_ sender: UIButton) {
+        
+        var item: Item!
+        let image = Image(context: context)
+        image.image = thumbImage.image
+        
+        if(itemToEdit == nil) {
+            item = Item(context: context)
+        } else {
+            item = itemToEdit
+        }
+        
+        item.toimage = image
+        
+        if let title = itemTitle.text {
+            item.title = title
+        }
+        
+        if let price = itemPrice.text {
+            item.price = (price as NSString).doubleValue
+        }
+        
+        if let details = itemDetails.text {
+            item.details = details
+        }
+        
+        if let title = itemTitle.text {
+            item.title = title
+        }
+        
+        item.toStore = stores[itemStore.selectedRow(inComponent: 0)]
+        
+        ad.saveContext()
+        
+        _ = navigationController?.popViewController(animated: true)
+        
+    }
+    
+   
+    @IBAction func deletePressed(_ sender: UIBarButtonItem) {
+        
+        if itemToEdit != nil {
+            context.delete(itemToEdit!)
+            ad.saveContext()
+        }
+        
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    @IBOutlet weak var thumbImage: UIImageView!
+    
+    @IBAction func addImage(_ sender: UIButton) {
+        present(imagePicker, animated: true, completion: nil)
+        
+    }
+}
 
-extension ItemDetailsVC: UIPickerViewDataSource, UIPickerViewDelegate   {
+extension ItemDetailsVC: UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate   {
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let img = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            thumbImage.image = img
+        }
+        
+        imagePicker.dismiss(animated: true, completion: nil)
+        
+    }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return stores.count
@@ -56,7 +134,7 @@ extension ItemDetailsVC: UIPickerViewDataSource, UIPickerViewDelegate   {
         
         //Update when selected
         
-        selectedStore.text = stores[row].name
+        //selectedStore.text = stores[row].name
         
     }
     
@@ -94,6 +172,33 @@ extension ItemDetailsVC: UIPickerViewDataSource, UIPickerViewDelegate   {
         } catch {
             let error = error as NSError
             print("\(error)")
+        }
+    }
+    
+    func loadItemData() {
+     
+        if let item = itemToEdit {
+            
+            itemTitle.text  = item.title;
+            itemPrice.text = "\(item.price)"
+            itemDetails.text = item.details
+            thumbImage.image = item.toimage?.image as? UIImage
+            
+            if let store = item.toStore {
+                
+                var index = 0
+                repeat {
+                    
+                    let s = stores[index]
+                    if(s.name == store.name) {
+                        itemStore.selectRow(index, inComponent: 0, animated: false)
+                        break
+                    }
+                    
+                    index += 1
+                    
+                } while(index < stores.count)
+            }
         }
     }
 }

@@ -24,6 +24,6 @@ class ItemViewCell: UITableViewCell, DropShadow, NibLoadableView {
         ItemTitle.text = item.title
         ItemPrice.text = "$\(item.price)"
         ItemDetails.text = item.details
-        //ItemThumb.image =
+        ItemThumb.image = item.toimage?.image as? UIImage
     }
 }

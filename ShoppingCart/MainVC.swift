@@ -36,6 +36,13 @@ class MainVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func segmentChange(_ sender: UISegmentedControl) {
+        
+        attemptFetch()
+        tableView.reloadData()
+    }
+    
 }
 
 
@@ -72,6 +79,25 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate, NSFetchedResultsCo
         cell.configureCell(item: item)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ItemDetailsVC" {
+            if let destination = segue.destination  as? ItemDetailsVC {
+                if let item = sender as? Item {
+                    destination.itemToEdit = item
+                }
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let objs = fetchedResultController.fetchedObjects, objs.count > 0 {
+            
+            let item = objs[indexPath.row]
+            performSegue(withIdentifier: "ItemDetailsVC", sender: item)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return 150
@@ -80,10 +106,24 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate, NSFetchedResultsCo
     func attemptFetch() {
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
         let dateSort: NSSortDescriptor = NSSortDescriptor(key: "created", ascending: false)
-        fetchRequest.sortDescriptors = [dateSort]
+        let priceSort: NSSortDescriptor = NSSortDescriptor(key: "price", ascending: true)
+        let titleSort: NSSortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        
+        if(sortSegment.selectedSegmentIndex == 0) {
+           fetchRequest.sortDescriptors = [dateSort]
+        } else if  sortSegment.selectedSegmentIndex == 1 {
+            fetchRequest.sortDescriptors = [priceSort]
+        } else {
+            fetchRequest.sortDescriptors = [titleSort]
+        }
+        
+        
+        
+        
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         
+        controller.delegate = self
         self.fetchedResultController = controller
         
         do{
