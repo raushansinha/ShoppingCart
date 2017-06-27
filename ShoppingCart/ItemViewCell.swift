@@ -14,6 +14,7 @@ class ItemViewCell: UITableViewCell, DropShadow, NibLoadableView {
     @IBOutlet weak var ItemPrice: UILabel!
     @IBOutlet weak var ItemDetails: UILabel!
     @IBOutlet weak var ItemThumb: UIImageView!
+    @IBOutlet weak var ItemType: UILabel!
     
     var item: Item!
     
@@ -24,6 +25,7 @@ class ItemViewCell: UITableViewCell, DropShadow, NibLoadableView {
         ItemTitle.text = item.title
         ItemPrice.text = "$\(item.price)"
         ItemDetails.text = item.details
+        ItemType.text = item.toItemType?.type
         ItemThumb.image = item.toimage?.image as? UIImage
     }
 }

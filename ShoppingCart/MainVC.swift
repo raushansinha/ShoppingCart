@@ -108,13 +108,16 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate, NSFetchedResultsCo
         let dateSort: NSSortDescriptor = NSSortDescriptor(key: "created", ascending: false)
         let priceSort: NSSortDescriptor = NSSortDescriptor(key: "price", ascending: true)
         let titleSort: NSSortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        let typeSort: NSSortDescriptor = NSSortDescriptor(key: "toItemType", ascending: true)
         
         if(sortSegment.selectedSegmentIndex == 0) {
            fetchRequest.sortDescriptors = [dateSort]
         } else if  sortSegment.selectedSegmentIndex == 1 {
             fetchRequest.sortDescriptors = [priceSort]
-        } else {
+        } else if sortSegment.selectedSegmentIndex == 2{
             fetchRequest.sortDescriptors = [titleSort]
+        } else {
+            fetchRequest.sortDescriptors = [typeSort]
         }
         
         

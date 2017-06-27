@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,60 +15,57 @@
             <rect key="frame" x="0.0" y="0.0" width="340" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="340" height="149.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="340" height="149"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohu-wN-vdx">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ohu-wN-vdx">
                         <rect key="frame" x="13" y="13" width="116" height="124"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tesla" translatesAutoresizingMaskIntoConstraints="NO" id="Qg0-gC-QuH">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tesla" translatesAutoresizingMaskIntoConstraints="NO" id="Qg0-gC-QuH">
                                 <rect key="frame" x="8" y="11" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Qg0-gC-QuH" firstAttribute="trailing" secondItem="ohu-wN-vdx" secondAttribute="trailingMargin" id="3Rr-vt-WgJ"/>
-                            <constraint firstAttribute="bottom" secondItem="Qg0-gC-QuH" secondAttribute="bottom" constant="13" id="D5K-YN-eco"/>
-                            <constraint firstItem="Qg0-gC-QuH" firstAttribute="top" secondItem="ohu-wN-vdx" secondAttribute="top" constant="11" id="Gjj-YE-8ug"/>
-                            <constraint firstItem="Qg0-gC-QuH" firstAttribute="leading" secondItem="ohu-wN-vdx" secondAttribute="leadingMargin" id="vzl-dt-1cg"/>
-                        </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tesla Model S" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYF-N5-7jI">
-                        <rect key="frame" x="123" y="13" width="209" height="21"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$80,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CP9-5u-uSf">
-                        <rect key="frame" x="123" y="49" width="209" height="20"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This one is a cool car. This price is way to high though." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqQ-Zc-Jkq">
-                        <rect key="frame" x="123" y="70" width="209" height="67"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="EWp-3d-yhY">
+                        <rect key="frame" x="132" y="8" width="200" height="130"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tesla Model S" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYF-N5-7jI">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="28"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$80,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CP9-5u-uSf">
+                                <rect key="frame" x="0.0" y="28" width="200" height="28"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehicals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mY-bn-SrH">
+                                <rect key="frame" x="0.0" y="56" width="200" height="27"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This one is a cool car. This price is way to high though." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqQ-Zc-Jkq">
+                                <rect key="frame" x="0.0" y="83" width="200" height="47"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <constraints>
-                            <constraint firstAttribute="width" constant="209" id="H2R-hL-9PH"/>
-                            <constraint firstAttribute="height" constant="67" id="edq-mH-Olq"/>
+                            <constraint firstAttribute="width" constant="200" id="89a-qA-HJq"/>
+                            <constraint firstAttribute="height" constant="130" id="xaQ-hh-tk0"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="ohu-wN-vdx" secondAttribute="trailing" constant="211" id="1c6-WD-3uw"/>
-                    <constraint firstItem="hqQ-Zc-Jkq" firstAttribute="trailing" secondItem="aYF-N5-7jI" secondAttribute="trailing" id="24l-2q-w4h"/>
-                    <constraint firstItem="hqQ-Zc-Jkq" firstAttribute="leading" secondItem="aYF-N5-7jI" secondAttribute="leading" id="5yW-hW-ds9"/>
-                    <constraint firstItem="hqQ-Zc-Jkq" firstAttribute="top" secondItem="CP9-5u-uSf" secondAttribute="bottom" constant="1" id="ODN-0T-qWk"/>
-                    <constraint firstItem="ohu-wN-vdx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="TfF-gd-v4K"/>
-                    <constraint firstItem="ohu-wN-vdx" firstAttribute="bottom" secondItem="hqQ-Zc-Jkq" secondAttribute="bottom" id="W6d-4y-EGh"/>
-                    <constraint firstItem="hqQ-Zc-Jkq" firstAttribute="leading" secondItem="CP9-5u-uSf" secondAttribute="leading" id="h8g-fQ-SKp"/>
-                    <constraint firstItem="ohu-wN-vdx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kTs-8f-scS"/>
-                    <constraint firstItem="ohu-wN-vdx" firstAttribute="top" secondItem="aYF-N5-7jI" secondAttribute="top" id="m4M-qK-YBb"/>
-                    <constraint firstItem="hqQ-Zc-Jkq" firstAttribute="trailing" secondItem="CP9-5u-uSf" secondAttribute="trailing" id="qQs-vs-ZWX"/>
-                    <constraint firstItem="hqQ-Zc-Jkq" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="vT8-gx-up3"/>
-                    <constraint firstItem="ohu-wN-vdx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="x7G-bk-WPL"/>
+                    <constraint firstAttribute="trailing" secondItem="EWp-3d-yhY" secondAttribute="trailing" constant="8" id="39x-Nt-cmG"/>
+                    <constraint firstItem="EWp-3d-yhY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Nio-fa-GDc"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -77,6 +73,7 @@
                 <outlet property="ItemPrice" destination="CP9-5u-uSf" id="ICw-d4-3Ja"/>
                 <outlet property="ItemThumb" destination="Qg0-gC-QuH" id="ldR-jq-qES"/>
                 <outlet property="ItemTitle" destination="aYF-N5-7jI" id="ecU-ft-qd6"/>
+                <outlet property="ItemType" destination="6mY-bn-SrH" id="DAW-UL-hj1"/>
             </connections>
             <point key="canvasLocation" x="5" y="106"/>
         </tableViewCell>
